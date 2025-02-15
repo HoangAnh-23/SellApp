@@ -1,0 +1,168 @@
+﻿<Window x:Class="SellApp.ProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SellApp"
+        mc:Ignorable="d"
+        Title="ProductWindow" Height="675" Width="1200"
+        WindowState="Maximized"
+        PreviewTextInput="Window_PreviewTextInput">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <!-- StackPanel bên trái -->
+        <StackPanel  VerticalAlignment="Top" HorizontalAlignment="Center" Grid.RowSpan="2">
+            <!-- Nút "Sản phẩm" chứa icon emoji -->
+            <Button Width="110" Height="212"  Background="#9acd32" BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,0,0" Click="btnPro">
+                <Button.Content>
+                    <TextBlock FontFamily="Segoe UI" FontSize="55" Text="👜" HorizontalAlignment="Center"/>
+                </Button.Content>
+            </Button>
+
+            <!-- Nút "Bán hàng" chứa icon emoji -->
+            <Button Width="110" Height="216" Background="#6a5acd" BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,5,0,0" Click="btnSell">
+                <Button.Content>
+                    <TextBlock FontFamily="Segoe UI" FontSize="55" Text="🛒" HorizontalAlignment="Center"/>
+                </Button.Content>
+            </Button>
+
+            <Button Width="110" Height="216" Background="Orange" BorderBrush="Transparent" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,5,0,0" Click="btnOrder">
+                <Button.Content>
+                    <TextBlock FontFamily="Segoe UI" FontSize="55" Text="🧾" HorizontalAlignment="Center"/>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Background="#f0f8ff" Margin="0,0,0,0">
+            <StackPanel Orientation="Horizontal" Margin="110,0,0,0">
+                <TextBox x:Name="txtSearch" Text="Tìm kiếm sản phẩm ..." Width="550" Height="50" Margin="60,20,0,0" FontSize="22" Padding="5,0"
+         Background="#FFF0F0F0" Foreground="Gray" BorderBrush="#FF2196F3" BorderThickness="2"
+         VerticalContentAlignment="Center" HorizontalAlignment="Left"
+         GotFocus="RemovePlaceholder" LostFocus="AddPlaceholder" TextChanged="txtSearch_TextChanged"/>
+
+
+                <Button Content="Tìm Kiếm " Width="150" Height="55" Margin="40,20,0,0" FontWeight="Bold" FontSize="18" Background="#dc143c"></Button>
+               
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                <Button Content="Thêm sản phẩm 🔫" Width="200" Height="40" Margin="0,10,0,0" FontSize="18" Background="#db7093" Foreground="Black" BorderBrush="Black" FontWeight="Bold" Click="btnAdd"></Button>
+                <!--<Button Content="Sửa" Width="120" Height="40" Margin="100,10,0,0" FontSize="20" Background="#800000" Click="btnEdit"></Button>
+                <Button Content="Xóa" Width="120" Height="40" Margin="100,10,0,0" FontSize="20" Background="#800000" Click="btnDelete"></Button>-->
+            </StackPanel>
+            <!--<StackPanel Orientation="Horizontal" Margin="100,20,0,10">
+                <TextBox x:Name="PID" Text="ID" Width="70" Height="40" Margin="20,0,20,0"
+             Foreground="Gray" BorderBrush="#FF2196F3" BorderThickness="2"
+             GotFocus="RemovePlaceholder" LostFocus="AddPlaceholder" IsReadOnly="True" FontSize="20"/>
+                <TextBox x:Name="PName" Text="Tên sản phẩm" Width="410" Height="40" FontSize="20"
+             Foreground="Gray" BorderBrush="#FF2196F3" BorderThickness="2"
+             GotFocus="RemovePlaceholder" LostFocus="AddPlaceholder"/>
+                <TextBox x:Name="PCode" Text="Mã vạch" Width="290" Margin="20,0,0,0" FontSize="20"
+             Height="40" Foreground="Gray" BorderBrush="#FF2196F3" BorderThickness="2"
+             GotFocus="RemovePlaceholder" LostFocus="AddPlaceholder"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="130,0,0,10">
+                <TextBox x:Name="PPrice" Text="Giá Tiền" Width="150" Height="40" Margin="20,0,20,0" FontSize="20"
+             Foreground="Gray" BorderBrush="#FF2196F3" BorderThickness="2"
+             GotFocus="RemovePlaceholder" LostFocus="AddPlaceholder"/>
+                <TextBox x:Name="PUnit" Text="Đơn vị" Width="180" Height="40" Margin="0,0,20,0" FontSize="20"
+Foreground="Gray" BorderBrush="#FF2196F3" BorderThickness="2"
+GotFocus="RemovePlaceholder" LostFocus="AddPlaceholder"/>
+                <TextBox x:Name="PDetail" Text="Ghi chú" Width="380" Height="40" FontSize="20"
+             Foreground="Gray" BorderBrush="#FF2196F3" BorderThickness="2"
+             GotFocus="RemovePlaceholder" LostFocus="AddPlaceholder"/>
+            </StackPanel>-->
+
+            <DataGrid Grid.Column="1" x:Name="dgData" AutoGenerateColumns="False" CanUserAddRows="False" Margin="0,20,0,0" Height="470" AlternatingRowBackground="LightGray" RowBackground="White">
+                <DataGrid.Resources>
+                    <!-- Tạo style cho Header -->
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="FontSize" Value="16" />
+                        <!-- Cỡ chữ cho header -->
+                        <Setter Property="FontWeight" Value="Bold" />
+                        <!-- Làm đậm chữ -->
+                        <Setter Property="Foreground" Value="Black" />
+                        <!-- Đặt màu chữ đen -->
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        <!-- Căn giữa chữ -->
+                        <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled" />
+                        <!-- Bật ClearType để sắc nét -->
+                    </Style>
+
+
+                    <!-- Style cho ô dữ liệu -->
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="FontSize" Value="18" />
+                        <Setter Property="FontFamily" Value="Segoe UI"/>
+                    </Style>
+                </DataGrid.Resources>
+                
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding ProductId, Mode=OneWay}" Width="0.2*"/>
+                    <DataGridTemplateColumn Header="Tên sản phẩm" Width="1.9*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ProductName, Mode=OneWay}" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Đơn vị" Width="0.6*" Binding="{Binding Unit, TargetNullValue='', Mode=OneWay}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Header="Giá tiền" Width="0.5*" Binding="{Binding Price, StringFormat={}{0:#.##} k, Mode=OneWay}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Header="Mã vạch" Width="0.9*" Binding="{Binding Barcode, TargetNullValue='', Mode=OneWay}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTemplateColumn Header="Trọng lượng" Width="0.7*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Note, Mode=OneWay}" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!-- Cột Action -->
+                    <DataGridTemplateColumn Header="Thao tác" Width="0.8*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <!-- Nút Sửa -->
+                                    <Button Content="🛠" Width="50" Height="35" Margin="5,0" Background="#2e8b57" FontWeight="Bold" Foreground="Black"
+                            Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                            CommandParameter="{Binding}" Click="btnEdit"/>
+                                    
+                                    <!-- Nút Xóa -->
+                                    <Button Content="❌" Width="50" Height="35" Margin="5,0" Background="#FF6347" FontWeight="Bold" Foreground="Black"
+                            Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                            CommandParameter="{Binding}" Click="btnDelete"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Window>

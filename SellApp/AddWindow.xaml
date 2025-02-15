@@ -1,0 +1,37 @@
+﻿        <Window x:Class="SellApp.AddWindow"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:local="clr-namespace:SellApp"
+                mc:Ignorable="d"
+                Title="EditWindow" Height="520" Width="450"
+                WindowStartupLocation="CenterScreen">
+            <Grid>
+                <StackPanel Background="#c0c0c0">
+                    <Label Name="lblHoaDon" Content="Thêm sản phẩm" FontSize="30" Foreground="Red" Margin="105,20,20,0" FontFamily="Helvetica" FontWeight="Bold"></Label>
+                    <StackPanel Orientation="Horizontal" Margin="10,30,0,10">
+                        <Label Content="Tên sản phẩm" FontSize="20" FontWeight="Bold"></Label>
+                        <TextBox x:Name="PName"  Width="250" Margin="10,0,0,0" FontSize="20"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10,20,0,10">
+                        <Label Content="Mã vạch" FontSize="20" FontWeight="Bold"></Label>
+                        <TextBox x:Name="PCode"  Width="250" Margin="58,0,0,0" FontSize="20"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10,20,0,10">
+                        <Label Content="Đơn vị" FontSize="20" FontWeight="Bold"></Label>
+                        <TextBox x:Name="PUnit"  Width="250" Margin="74,0,0,0" FontSize="20"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10,20,0,10">
+                        <Label Content="Giá" FontSize="20" FontWeight="Bold"></Label>
+                        <TextBox x:Name="Price"  Width="250" Margin="102,0,0,0" FontSize="20"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10,20,0,10">
+                        <Label Content="Ghi chú" FontSize="20" FontWeight="Bold"></Label>
+                        <TextBox x:Name="PDetail"  Width="250" Margin="63,0,0,0" FontSize="20"></TextBox>
+                    </StackPanel>
+                    <Button Content="Thêm" Width="120" Height="40" Margin="10,10,0,0" FontSize="20" Background="Green" Click="btnSaveAdd"></Button>
+                </StackPanel>
+
+            </Grid>
+        </Window>
